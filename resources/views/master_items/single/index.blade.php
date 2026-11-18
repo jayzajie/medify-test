@@ -38,9 +38,32 @@
                             <td>{{$data->supplier}}</td>
                         </tr>
                         <tr>
+                            <th>Foto</th>
+                            <td>:</td>
+                            <td>
+                                @if($data->foto)
+                                    <img src="{{ asset('storage') }}/{{ $data->foto }}" width="160" class="img-thumbnail" alt="Foto Item" />
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Jenis</th>
                             <td>:</td>
                             <td>{{$data->jenis}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Kategori</th>
+                            <td>:</td>
+                            <td>
+                                @if($data->kategoriItems && $data->kategoriItems->count() > 0)
+                                    {{ $data->kategoriItems->pluck('nama')->join(', ') }}
+                                @else
+                                    -
+                                @endif
+                            </td>
                         </tr>
                     </table>
                     <a class="btn btn-info" href="{{url('master-items/form/edit')}}/{{$data->id}}">Edit</a>
